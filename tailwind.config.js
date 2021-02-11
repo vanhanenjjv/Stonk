@@ -5,7 +5,11 @@ module.exports = {
     extend: {}
   },
   variants: {
-    extend: {}
+    extend: {
+      padding: ['first', 'last'],
+      opacity: ['disabled'],
+      borderRadius: ['first', 'last']
+    }
   },
   plugins: [
     require('@tailwindcss/forms')
