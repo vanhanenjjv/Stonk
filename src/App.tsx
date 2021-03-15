@@ -3,6 +3,7 @@ import React from 'react';
 import { StockData, View } from './types';
 import { Analytics, Source } from './stock';
 import { Layout } from './components';
+import github from './github';
 
 
 const App: React.FC = () => {
@@ -12,7 +13,7 @@ const App: React.FC = () => {
   const showSource = (): void => setView('stock-source');
 
   return (
-    <Layout>
+    <Layout github={github}>
       {React.useMemo(
         () => {
           switch (view) {
