@@ -1,36 +1,22 @@
 import React from 'react';
 
-import { StockData, View } from './types';
-import { Analytics, Source } from './stock';
 import { Layout } from './components';
+import { StockData, View } from './types';
+import { Analytics, Upload } from './stock';
 import github from './github';
 
 
 const App: React.FC = () => {
   const [stockData, setStockData] = React.useState<StockData[]>([]);
-  const [view, setView] = React.useState<View>('stock-source');
+  const [view, setView] = React.useState<View>('upload');
 
-  const showSource = (): void => setView('stock-source');
+  const goToUpload = (): void => setView('upload');
+  // const goToAnalytics = (): void => setView('analytics');
 
   return (
     <Layout github={github}>
-      {React.useMemo(
-        () => {
-          switch (view) {
-          case 'stock-source': return (
-            <Source.View onSet={d => {
-              setStockData(d); setView('stock-analytics');
-            }} />
-          );
-          case 'stock-analytics': return (
-            <Analytics.View
-              records={stockData}
-              onBack={showSource} />
-          );
-          }
-        },
-        [view]
-      )}
+      {view === 'analytics' && <Analytics.View records={stockData} onBack={goToUpload} />}
+      {view === 'upload' && <Upload.View onUpload={setStockData} />}
     </Layout>
   );
 };

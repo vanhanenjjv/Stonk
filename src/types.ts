@@ -7,7 +7,7 @@ export type GitHub =
     commitHash: string
     link: string }
 
-export type View = 'stock-source' | 'stock-analytics';
+export type View = 'upload' | 'analytics';
 
 export type StockData =
   {	date: Dayjs

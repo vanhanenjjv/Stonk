@@ -5,11 +5,11 @@ import { RcFile } from 'antd/lib/upload/interface';
 import { InboxOutlined } from '@ant-design/icons';
 
 
-export interface SourceProviderProps {
+export interface FileProps {
   onReceive: (content: string) => void
 }
 
-export const File: React.FC<SourceProviderProps> = props => {
+export const File: React.FC<FileProps> = props => {
   const receive = (file: RcFile): boolean => {
     file.text().then(props.onReceive);
 
@@ -17,7 +17,7 @@ export const File: React.FC<SourceProviderProps> = props => {
   };
 
   return (
-    <Upload.Dragger beforeUpload={receive} showUploadList={false} style={{ height: 800 }}>
+    <Upload.Dragger beforeUpload={receive} style={{ height: 800 }}>
       <p className="ant-upload-drag-icon">
         <InboxOutlined />
       </p>
