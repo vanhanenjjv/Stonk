@@ -1,19 +1,35 @@
 import React from 'react';
 
-import StockData from './stock-data';
-import Layout from './Layout';
-
-import { Upload, Analytics } from './components';
+import { StockData, View } from './types';
+import { Analytics, Source } from './stock';
+import { Layout } from './components';
 
 
 const App: React.FC = () => {
   const [stockData, setStockData] = React.useState<StockData[]>([]);
+  const [view, setView] = React.useState<View>('stock-source');
+
+  const showSource = (): void => setView('stock-source');
 
   return (
     <Layout>
-      {stockData.length === 0
-        ? <Upload onReceive={setStockData} />
-        : <Analytics data={stockData} />}
+      {React.useMemo(
+        () => {
+          switch (view) {
+          case 'stock-source': return (
+            <Source.View onSet={d => {
+              setStockData(d); setView('stock-analytics');
+            }} />
+          );
+          case 'stock-analytics': return (
+            <Analytics.View
+              records={stockData}
+              onBack={showSource} />
+          );
+          }
+        },
+        [view]
+      )}
     </Layout>
   );
 };
