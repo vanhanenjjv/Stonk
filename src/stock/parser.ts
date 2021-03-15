@@ -40,9 +40,6 @@ export function readCsv(csv: string): StockData[] {
 
     const sma5Percentage = (1 - (sma5 / datum.open)) * 100;
 
-    // eslint-disable-next-line no-debugger
-    debugger;
-
     return { ...datum, sma5Percentage };
   }
 }
