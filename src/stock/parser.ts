@@ -12,7 +12,7 @@ export function readCsv(csv: string): StockData[] {
       .sort(compareByDate)
       .map(addSimpleMovingAverage5);
   } catch (error) {
-    console.error(`Unable to parse line: '${error}'.`);
+    console.error(error);
 
     return [];
   }
@@ -22,7 +22,7 @@ function readStockData(line: string): StockData {
   const [date, close, volume, open, high, low] = line.split(',').map(field => field.trim());
 
   if (!(date && close && volume && open && high && low))
-    throw new Error(line);
+    throw new Error(`Unable to parse line '${line}'.`);
 
   return {
     date: dayjs(date),
