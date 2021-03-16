@@ -7,10 +7,10 @@ import { StockData } from '../../../types';
 
 
 export interface TableProps {
-  records: StockData[]
+  stockData: StockData[]
 }
 
-export const Table: React.FC<TableProps> = ({ records }) => {
+export const Table: React.FC<TableProps> = ({ stockData }) => {
   return (
     <AntdTable
       scroll={{ x: true }}
@@ -63,7 +63,7 @@ export const Table: React.FC<TableProps> = ({ records }) => {
           sorter: (a, b) => (a.sma5Percentage ?? 0) - (b.sma5Percentage ?? 0)
         }
       ]}
-      dataSource={records}
+      dataSource={stockData}
       rowKey={r => r.date.unix()} />
   );
 };

@@ -5,25 +5,24 @@ import { Message, Model } from './types';
 
 
 export default (): [Model, React.Dispatch<Message>] => {
-  const initialValue: Model = {};
+  const initialValue: Model = {
+    stockData: []
+  };
 
   const update = (model: Model, message: Message): Model => {
     switch (message.type) {
-    case 'SET_SOURCE': {
-      const stockData = parser.readCsv(message.file.text);
+    case 'PARSE_FILE': {
+      const stockData = parser.readCsv(message.content);
 
       return {
         ...model,
-        source: {
-          name: message.file.name,
-          data: stockData
-        }
+        stockData
       };
     }
-    case 'CLEAR_SOURCE':
+    case 'CLEAR_STOCKDATA':
       return {
         ...model,
-        source: undefined
+        stockData: []
       };
     }
   };

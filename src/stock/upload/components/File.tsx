@@ -3,18 +3,15 @@ import React from 'react';
 import { Upload } from 'antd';
 import { RcFile } from 'antd/lib/upload/interface';
 import { InboxOutlined } from '@ant-design/icons';
-import { File as IFile } from '../types';
 
 
 export interface FileProps {
-  onReceive: (file: IFile) => void
+  onReceive: (content: string) => void
 }
 
 export const File: React.FC<FileProps> = props => {
   const receive = (file: RcFile): boolean => {
-    file.text().then(async text => {
-      props.onReceive({ name: file.name, text });
-    });
+    file.text().then(props.onReceive);
 
     return false;
   };

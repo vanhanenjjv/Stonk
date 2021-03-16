@@ -6,7 +6,6 @@ import { StockData } from '../../types';
 import { Header } from '../../components';
 import { File } from './components';
 import useState from './state';
-import { File as IFile } from './types';
 
 
 export interface UploadProps {
@@ -14,18 +13,18 @@ export interface UploadProps {
 }
 
 export default function Upload(props: UploadProps): JSX.Element {
-  const [{ source }, update] = useState();
+  const [{ stockData }, update] = useState();
 
   React.useEffect(() => {
-    if (source?.data?.length && source.data.length > 0) {
-      props.onUpload(source?.data);
-      update({ type: 'CLEAR_SOURCE' });
+    if (stockData.length !== 0) {
+      props.onUpload(stockData);
+      update({ type: 'CLEAR_STOCKDATA' });
     }
 
-  }, [source?.data]);
+  }, [stockData]);
 
-  const receiveFile = (file: IFile): void => {
-    update({ type: 'SET_SOURCE', file });
+  const receiveFile = (content: string): void => {
+    update({ type: 'PARSE_FILE', content });
   };
 
   return (

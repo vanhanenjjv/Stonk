@@ -1,17 +1,9 @@
 import { StockData } from '../../types';
 
 
-export type File =
-  { name: string
-    text: string };
-
-export type StockDataSource =
-  { name: string
-    data: StockData[] };
-
 export type Model =
-  { source?: StockDataSource };
+  { stockData: StockData[] };
 
 export type Message =
-  | { type: 'SET_SOURCE', file: File }
-  | { type: 'CLEAR_SOURCE' }
+  | { type: 'PARSE_FILE', content: string }
+  | { type: 'CLEAR_STOCKDATA' }
