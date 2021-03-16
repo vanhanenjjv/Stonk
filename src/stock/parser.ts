@@ -8,40 +8,40 @@ export function readCsv(csv: string): StockData[] {
     .slice(1)
     .filter(line => line)
     .map(readStockData)
-    .sort(byDate)
+    .sort(compareByDate)
     .map(addSimpleMovingAverage5);
+}
 
-  function readStockData(line: string): StockData {
-    const [date, close, volume, open, high, low] = line.split(',').map(field => field.trim());
+function readStockData(line: string): StockData {
+  const [date, close, volume, open, high, low] = line.split(',').map(field => field.trim());
 
-    return {
-      date: dayjs(date),
-      close: dollar(close),
-      volume: Number(volume),
-      open: dollar(open),
-      high: dollar(high),
-      low: dollar(low),
-      priceChange: Math.abs(dollar(high) - dollar(low))
-    };
-  }
+  return {
+    date: dayjs(date),
+    close: dollar(close),
+    volume: Number(volume),
+    open: dollar(open),
+    high: dollar(high),
+    low: dollar(low),
+    priceChange: Math.abs(dollar(high) - dollar(low))
+  };
+}
 
-  function byDate(a: StockData, b: StockData): number {
-    return a.date.unix() - b.date.unix();
-  }
+function compareByDate(a: StockData, b: StockData): number {
+  return a.date.unix() - b.date.unix();
+}
 
-  function addSimpleMovingAverage5(datum: StockData, index: number, all: StockData[]): StockData {
-    if (index < 5)
-      return datum;
+function addSimpleMovingAverage5(datum: StockData, index: number, all: StockData[]): StockData {
+  if (index < 5)
+    return datum;
 
-    const sma5 = all
-      .slice(index - 5, index)
-      .reduce((sum, { close }) => sum += close, 0)
-      / 5;
+  const sma5 = all
+    .slice(index - 5, index)
+    .reduce((sum, { close }) => sum += close, 0)
+    / 5;
 
-    const sma5Percentage = (1 - (sma5 / datum.open)) * 100;
+  const sma5Percentage = (1 - (sma5 / datum.open)) * 100;
 
-    return { ...datum, sma5Percentage };
-  }
+  return { ...datum, sma5Percentage };
 }
 
 type DollarConstructor = (value: unknown) => number;

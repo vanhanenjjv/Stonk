@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Layout as AntLayout, Space, Typography } from 'antd';
+import { Layout as AntLayout, Typography } from 'antd';
 
 import github from '../github';
 
