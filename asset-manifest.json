@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Stonk/static/css/main.99d07fef.chunk.css",
-    "main.js": "/Stonk/static/js/main.f80caf89.chunk.js",
-    "main.js.map": "/Stonk/static/js/main.f80caf89.chunk.js.map",
+    "main.js": "/Stonk/static/js/main.66f5679d.chunk.js",
+    "main.js.map": "/Stonk/static/js/main.66f5679d.chunk.js.map",
     "runtime-main.js": "/Stonk/static/js/runtime-main.6d248290.js",
     "runtime-main.js.map": "/Stonk/static/js/runtime-main.6d248290.js.map",
     "static/css/2.602ea6c8.chunk.css": "/Stonk/static/css/2.602ea6c8.chunk.css",
@@ -24,6 +24,6 @@
     "static/css/2.602ea6c8.chunk.css",
     "static/js/2.3e517dfb.chunk.js",
     "static/css/main.99d07fef.chunk.css",
-    "static/js/main.f80caf89.chunk.js"
+    "static/js/main.66f5679d.chunk.js"
   ]
 }
