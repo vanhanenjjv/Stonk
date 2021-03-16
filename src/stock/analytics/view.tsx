@@ -28,11 +28,11 @@ export default function Analytics(props: AnalyticsProps): JSX.Element {
         onBack={props.onBack}
         extra={<DatePicker.RangePicker onChange={setRange} />} />
       <Divider>Statistics</Divider>
-      <Statistics stockData={model.stockData} />
+      <Statistics stockData={model.stockDataInRange} />
       <Divider>Chart</Divider>
-      <Chart stockData={model.stockData} />
+      <Chart stockData={model.stockDataInRange} />
       <Divider>Table</Divider>
-      <Table stockData={model.stockData} />
+      <Table stockData={model.stockDataInRange} />
     </Space>
   );
 }
