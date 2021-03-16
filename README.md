@@ -14,3 +14,4 @@ Stonk is a web application that allows analyzation of user-submitted stock data.
 1. Clone the repository
 2. Install node modules (`npm i`)
 3. Run the start script (`npm start`)
+4. 🚀
