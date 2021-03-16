@@ -1,10 +1,12 @@
 import React from 'react';
 
-import { Card } from 'antd';
+import { Card, Space } from 'antd';
 
+import { StockData } from '../../types';
+import { Header } from '../../components';
 import { File } from './components';
 import useState from './state';
-import { StockData } from '../../types';
+import { File as IFile } from './types';
 
 
 export interface UploadProps {
@@ -12,25 +14,24 @@ export interface UploadProps {
 }
 
 export default function Upload(props: UploadProps): JSX.Element {
-  const [{ stockData }, update] = useState();
+  const [{ source }, update] = useState();
 
   React.useEffect(() => {
-    if (stockData.length > 0)
-      props.onUpload(stockData);
+    if (source?.data?.length && source.data.length > 0) {
+      props.onUpload(source?.data);
+      update({ type: 'CLEAR_SOURCE' });
+    }
 
-    return () => {
-      update({ type: 'CLEAR_FILE' });
-    };
+  }, [source?.data]);
 
-  }, [stockData]);
-
-  const setFile = (file: string): void => {
-    update({ type: 'SET_FILE', file });
+  const receiveFile = (file: IFile): void => {
+    update({ type: 'SET_SOURCE', file });
   };
 
   return (
-    <Card>
-      <File onReceive={setFile} />
-    </Card>
+    <Space style={{ width: '100%' }} direction="vertical">
+      <Header title="Upload" />
+      <Card><File onReceive={receiveFile} /></Card>
+    </Space>
   );
 }

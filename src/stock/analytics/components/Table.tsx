@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Popover, Table as AntdTable, Typography } from 'antd';
+import { Table as AntdTable } from 'antd';
 import dayjs from 'dayjs';
 
 import { StockData } from '../../../types';
@@ -59,31 +59,11 @@ export const Table: React.FC<TableProps> = ({ records }) => {
         {
           title: 'SMA5',
           dataIndex: 'sma5Percentage',
-          render: SMA5Cell,
+          render: value => value ? `${value.toFixed(2)}%` : 'n/a',
           sorter: (a, b) => (a.sma5Percentage ?? 0) - (b.sma5Percentage ?? 0)
         }
       ]}
       dataSource={records}
       rowKey={r => r.date.unix()} />
   );
-
-  function SMA5Cell(value: number): JSX.Element {
-    console.log(value);
-
-    return value
-      ? <span>{value.toFixed(2)}%</span>
-      : (
-        <Popover
-          title="Error"
-          content={
-            <div>
-              <Typography.Paragraph>
-                Not enough prior days to calculate simple moving average for five days.
-              </Typography.Paragraph>
-            </div>
-          }>
-          n/a
-        </Popover>
-      );
-  }
 };

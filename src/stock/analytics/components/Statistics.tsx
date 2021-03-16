@@ -6,22 +6,18 @@ import { StockData } from '../../../types';
 
 
 export interface StatisticsProps {
-  records: StockData[]
+  stockData: StockData[]
 }
 
 export const Statistics: React.FC<StatisticsProps> = props => {
-  return (
-    <LongestBullishTrend />
-  );
-
-  function LongestBullishTrend(): JSX.Element {
+  const LongestBullishTrend: React.FC = () => {
     const trend = React.useMemo(
       () => {
         const streak: { current: StockData[], longest: StockData[] } = { current: [], longest: [] };
 
-        for (let i = 1; i < props.records.length; ++i) {
-          const current = props.records[i];
-          const previous = props.records[i - 1];
+        for (let i = 1; i < props.stockData.length; ++i) {
+          const current = props.stockData[i];
+          const previous = props.stockData[i - 1];
 
           if (previous.close > current.close) {
             streak.current = [];
@@ -36,7 +32,7 @@ export const Statistics: React.FC<StatisticsProps> = props => {
 
         return streak.longest;
       },
-      [props.records]
+      [props.stockData]
     );
 
     const [start, end] = React.useMemo(
@@ -95,5 +91,9 @@ export const Statistics: React.FC<StatisticsProps> = props => {
         </Row>
       </Card>
     );
-  }
+  };
+
+  return (
+    <LongestBullishTrend />
+  );
 };

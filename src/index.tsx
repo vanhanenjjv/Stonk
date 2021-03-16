@@ -8,7 +8,7 @@ import isBetween from 'dayjs/plugin/isBetween';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
+import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 
 

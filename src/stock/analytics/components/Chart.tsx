@@ -7,16 +7,16 @@ import { Card } from 'antd';
 
 
 export interface ChartProps {
-  records: StockData[]
+  stockData: StockData[]
 }
 
-export const Chart: React.FC<ChartProps> = ({ records }) => {
-  const data = React.useMemo(
-    () => records.map(record => ({
-      ...record,
-      date: record.date.format('YYYY-MM-DD')
+export const Chart: React.FC<ChartProps> = props => {
+  const stockData = React.useMemo(
+    () => props.stockData.map(d => ({
+      ...d,
+      date: d.date.format('YYYY-MM-DD')
     })),
-    [records]
+    [props.stockData]
   );
 
   return (
@@ -26,7 +26,7 @@ export const Chart: React.FC<ChartProps> = ({ records }) => {
         height={500}
         xField="date"
         yField={['open', 'close', 'high', 'low']}
-        data={data} />
+        data={stockData} />
     </Card>
   );
 };

@@ -12,7 +12,7 @@ const github: GitHub = {
   username: GITHUB_USERNAME,
   repository: GITHUB_REPOSITORY_NAME,
   commitHash: GIT_COMMIT_HASH,
-  link: `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY_NAME}/commit/${GIT_COMMIT_HASH}`
+  link: `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY_NAME}`
 };
 
 

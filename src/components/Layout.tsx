@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { Layout as AntLayout, Typography } from 'antd';
-import { GitHub } from '../types';
+import { Layout as AntLayout, Space, Typography } from 'antd';
+
+import github from '../github';
 
 
-export interface LayoutProps {
-  github: GitHub
-}
-
-export const Layout: React.FC<LayoutProps> = ({ github, children }) => {
+export const Layout: React.FC = ({ children }) => {
   return (
-    <AntLayout style={{ height: '100%' }}>
+    <AntLayout>
       <AntLayout.Content
         style={{
           width: '100%',
@@ -26,7 +23,7 @@ export const Layout: React.FC<LayoutProps> = ({ github, children }) => {
           type="secondary"
           rel="noopener"
           target="_blank"
-          href={github.link}>
+          href={`${github.link}/commit/${github.commitHash}`}>
           {github.commitHash}
         </Typography.Link>
       </AntLayout.Footer>

@@ -1,6 +1,7 @@
 {
   "name": "stonk",
   "version": "0.1.0",
+  "homepage": "https://vanhanenjjv.github.io/Stonk",
   "private": true,
   "dependencies": {
     "@ant-design/charts": "^1.0.19",

@@ -3,11 +3,12 @@ import React from 'react';
 import { Message, Model } from './types';
 
 
-export default ({ allRecords }: Partial<Model>): [Model, React.Dispatch<Message>] => {
+export default (model?: Partial<Model>): [Model, React.Dispatch<Message>] => {
   const initialState: Model = {
-    allRecords: allRecords ?? [],
-    recordsInRange: allRecords ?? [],
-    range: [null, null]
+    records: model?.records ?? [],
+    recordsInRange: model?.records ?? [],
+    range: [null, null],
+    uploadModalVisible: false
   };
 
   const reducer = (model: Model, message: Message): Model => {
@@ -15,7 +16,7 @@ export default ({ allRecords }: Partial<Model>): [Model, React.Dispatch<Message>
     case 'SET_RANGE': {
       return {
         ...model,
-        recordsInRange: model.allRecords.filter(r => {
+        recordsInRange: model.records.filter(r => {
           const date = dayjs(r.date);
           const from = message.range?.[0]?.subtract(1, 'day');
           const to   = message.range?.[1]?.add(1, 'day');
@@ -29,6 +30,8 @@ export default ({ allRecords }: Partial<Model>): [Model, React.Dispatch<Message>
         range: message.range
       };
     }
+    case 'SHOW_MODAL': return { ...model, uploadModalVisible: true };
+    case 'HIDE_MODAL': return { ...model, uploadModalVisible: false };
     }
   };
 
