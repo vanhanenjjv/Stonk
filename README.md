@@ -1,4 +1,4 @@
-# Stonk <a href="https://codeclimate.com/github/vanhanenjjv/Stonk/maintainability"><img src="https://api.codeclimate.com/v1/badges/440f60612e2965b6249c/maintainability" /></a>
+# Stonk <a href="https://codeclimate.com/github/vanhanenjjv/Stonk/maintainability"><img src="https://api.codeclimate.com/v1/badges/440f60612e2965b6249c/maintainability" /></a> <img src="https://hit-counter.vanhanen.workers.dev?tag=github|vanhanenjjv|stonk" />
 
 ## What is it?
 
